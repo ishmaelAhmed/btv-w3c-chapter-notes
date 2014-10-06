@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+</head>
+
+<body>
+    <h1>Geo Location API Test</h1>
+    <button id="runTest">Run Test</button>
+    <p>
+        Status:
+        <span id="status" />
+    </p>
+    <p>
+        Lat:
+        <span id="lat"></span>
+        <br/>Long:
+        <span id="long"></span>
+    </p>
+    <p>
+        Error Code:
+        <span id="errorCode" />
+        <br/>Error Message:
+        <span id="errorMessage" />
+    </p>
+
+
+
+    <script type="text/javascript">
+    (function() {
+        function setStatus(statusText) {
+            $("#status").text(statusText);
+        }
+        $(document).ready(function() {
+            setStatus('Waiting - Click the run button');
+
+            $("button#runTest").on('click', function() {
+                setStatus('Starting');
+                navigator.geolocation.getCurrentPosition(
+                    function(pos) {
+                        alert(pos);
+                        $("#lat").text(pos.coords.latitude);
+                        $("#long").text(pos.coords.longitude);
+                    },
+                    function(err) {
+                        var code = '';
+                        switch (err.code) {
+                            case 1:
+                                code = 'PERMISSION_DENIED';
+                                break;
+                            case 2:
+                                code = 'POSITION_UNAVAILABLE';
+                                break;
+                            case 3:
+                                code = 'TIMEOUT';
+                                break;
+                            default:
+                                code = 'UNKNOWN CODE!!!!';
+                                break;
+                        }
+
+                        $("#errorCode").text(code);
+                        $("#errorMessage").text(err.message);
+                    });
+            });
+        });
+    })();
+    </script>
+</body>
+
+</html>
