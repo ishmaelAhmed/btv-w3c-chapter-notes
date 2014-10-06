@@ -3,6 +3,7 @@
 
 <head>
     <title></title>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 </head>
 
 <body>
@@ -39,12 +40,14 @@
                 setStatus('Starting');
                 navigator.geolocation.getCurrentPosition(
                     function(pos) {
-                        alert(pos);
+                        console.log(pos);
                         $("#lat").text(pos.coords.latitude);
                         $("#long").text(pos.coords.longitude);
                     },
                     function(err) {
                         var code = '';
+
+                        console.log(err);
                         switch (err.code) {
                             case 1:
                                 code = 'PERMISSION_DENIED';
