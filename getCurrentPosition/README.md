@@ -48,5 +48,3 @@ PositionError {
 I like the chrome info better, it tells me more, firefox is functional but still not very verbose.
 
 
-
-## navigator.geolocation.watchPosition()
