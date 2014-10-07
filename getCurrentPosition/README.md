@@ -18,7 +18,8 @@ PositionError {
 
 ## Firefox 
 
-Firefox allows for subtle gradations. You can deny for just now, this returns nothing back to the page. This kida sucks for the app dev. If you deny forever then you get the error, just like in chrome.
+Firefox allows for subtle gradations. You can allow or deny for just now. Denying for the session seems to stop processing the geolocation call. This kida sucks for the app dev. What is one to do, create custom listeners and timeouts?
+If you deny forever then you get the error, just like in chrome, but why would you not get an error back? Why not tell the app directly instead of forcing the dev to handel it via time outs and fancy coding?
 
 
 ## Let try with out an internet connection
@@ -26,9 +27,9 @@ Firefox allows for subtle gradations. You can deny for just now, this returns no
 ### Firefox
 
 ```js
-	Object {
-	    PERMISSION_DENIED = 1, POSITION_UNAVAILABLE = 2, TIMEOUT = 3
-	}
+Object {
+    PERMISSION_DENIED = 1, POSITION_UNAVAILABLE = 2, TIMEOUT = 3
+}
 ```
 
 ### Chrome
@@ -44,5 +45,8 @@ PositionError {
 
 ```
 
+I like the chrome info better, it tells me more, firefox is functional but still not very verbose.
 
-## navigator.geolocation.getCurrentPosition()
+
+
+## navigator.geolocation.watchPosition()
